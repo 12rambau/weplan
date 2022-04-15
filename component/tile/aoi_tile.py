@@ -26,8 +26,7 @@ class AoiTile(aoi.AoiTile):
         if self.view.model.name is None:
             return
 
-        print(self.view.model.name.lower())
-        if self.view.model.name.lower() != "uganda":
+        if self.view.model.name.lower() != "uga":
             self.view.reset()
             self.view.w_method.v_model = "ADMIN0"
             self.view.w_admin_0.viz = True
