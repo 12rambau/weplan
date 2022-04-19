@@ -1,5 +1,7 @@
 from sepal_ui import sepalwidgets as sw
 
+from component import parameter as cp
+
 
 class ParamTile(sw.Card):
     def __init__(self, model):
@@ -16,14 +18,14 @@ class ParamTile(sw.Card):
         # create the widgets
         w_target = sw.Select(
             small=True,
-            items=[i for i in range(1, 5)],
+            items=[i + 1 for i in range(cp.nb_target)],
             v_model=model.target,
             label="target",
             dense=True,
         )
         w_weight = sw.Select(
             small=True,
-            items=[i for i in range(1, 10)],
+            items=[i + 1 for i in range(cp.nb_weight)],
             v_model=model.weight,
             label="weight",
             dense=True,
