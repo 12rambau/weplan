@@ -1,38 +1,29 @@
-from sepal_ui import aoi
-from sepal_ui.scripts import utils as su
+from sepal_ui import sepalwidgets as sw
+from .aoi_view import AoiView
 
 
-class AoiTile(aoi.AoiTile):
-    def __init__(self):
+class AoiTile(sw.Card):
+    def __init__(self, map_):
 
-        # create the aoitile
-        super().__init__(
-            # gee=False,
-            methods=["ADMIN0"]
+        # get the map as a member
+        self.map = map_
+
+        # add the base widgets
+        self.close = sw.Icon(children=["mdi-close"], small=True)
+        self.title = sw.CardTitle(
+            class_="pa-0 ma-0", children=[sw.Spacer(), self.close]
         )
 
-        # preselect country selection and prevent user to change
-        self.view.w_method.readonly = True
-        self.view.w_method.viz = False
-        self.view.w_method.v_model = "ADMIN0"
+        # add the nested AoiView
+        self.view = AoiView(map_=self.map)
 
-        # bind an extra js behaviour
-        self.view.observe(self.check_prototype, "updated")
+        # create the object
+        super().__init__(
+            max_width="410px",
+            class_="pa-1",
+            children=[self.title, self.view],
+            viz=False,
+        )
 
-    def check_prototype(self, change):
-        """only allow the selection of Uganda in this prototype"""
-
-        # exit if nothing
-        if self.view.model.name is None:
-            return
-
-        if self.view.model.name.lower() != "uga":
-            self.view.reset()
-            self.view.w_method.v_model = "ADMIN0"
-            self.view.w_admin_0.viz = True
-            self.view.alert.add_msg(
-                "This module is a prototype, only Uganda can be selected in the list",
-                "error",
-            )
-
-        return
+        # add javascript events
+        self.close.on_event("click", lambda *args: self.hide())

@@ -1,11 +1,16 @@
 {
-    "not_translated": "this message only exist in the en dict",
     "app": {
         "title": "weplan",
-        "footer": "The sky is the limit \u00a9 {}",
         "drawer_item": {
             "aoi": "AOI selection",
             "about": "About"
+        }
+    },
+    "map": {
+        "control": {
+            "aoi": "select the AOI",
+            "parameters": "Select the weplan parameters",
+            "download": "Download data"
         }
     }
 }
