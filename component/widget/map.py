@@ -30,11 +30,11 @@ class Map(sm.SepalMap):
 
         # add the buttons on the topleft side of the map
         self.aoi_btn = CButton(cm.map.control.aoi, "map-marker")
-        self.parameters_btn = CButton(cm.map.control.parameters, "navicon")
+        self.param_btn = CButton(cm.map.control.parameters, "navicon")
         self.download_btn = CButton(cm.map.control.download, "cloud-download")
 
         self.add_widget_as_control(self.aoi_btn, "topleft")
-        self.add_widget_as_control(self.parameters_btn, "topleft")
+        self.add_widget_as_control(self.param_btn, "topleft")
         self.add_widget_as_control(self.download_btn, "topleft")
 
     def add_widget_as_control(self, widget, position, first=False):
