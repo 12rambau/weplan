@@ -17,7 +17,7 @@ class MapTile(sw.Tile):
         self.model = WeplanModel()
 
         # create the tiles
-        self.aoi_tile = AoiTile(map_=self.map)
+        self.aoi_tile = AoiTile(map_=self.map, model=self.model)
         self.param_tile = ParamTile(model=self.model)
         self.download_tile = DownloadTile(model=self.model)
 
