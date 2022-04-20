@@ -1,10 +1,11 @@
 weplan
 ======
 
-.. warning::
+Overview 
+--------
 
-    The english documentation of the module have not been set.
+Usage
+-----
 
-.. tip::
-
-    Please open an issue on their repository : https://github.com/12rambau/weplan/issues/new
+Output
+------
