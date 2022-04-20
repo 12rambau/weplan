@@ -86,7 +86,7 @@ class DownloadTile(sw.Card):
         """retreive the files from the tmp directory to SEPAL folders"""
 
         # check that the folder exist
-        to_dir = cp.module_dir / self.model.iso
+        to_dir = cp.weplan_dir / self.model.iso
         to_dir.mkdir(exist_ok=True)
 
         # fill it with the selected files

@@ -2,7 +2,7 @@
     "app": {
         "title": "weplan",
         "drawer_item": {
-            "aoi": "AOI selection",
+            "map": "weplan",
             "about": "About"
         }
     },
