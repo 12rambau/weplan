@@ -11,6 +11,12 @@
             "aoi": "select the AOI",
             "parameters": "Select the weplan parameters",
             "download": "Download data"
+        },
+        "layer": {
+            "available": "available for restoration",
+            "mincost": "minimum cost scenario",
+            "ce": "cost-effectivness scenario",
+            "mb": "max benefits scenario"
         }
     }
 }

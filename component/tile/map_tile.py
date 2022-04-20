@@ -1,6 +1,8 @@
 from sepal_ui import sepalwidgets as sw
 
 from component import widget as cw
+from component import scripts as cs
+from component.message import cm
 from component.model import WeplanModel
 from .aoi_tile import AoiTile
 from .param_tile import ParamTile
@@ -33,3 +35,25 @@ class MapTile(sw.Tile):
 
         # create the tile
         super().__init__(id_="map_tile", title="", inputs=[self.map])
+
+        # add javascript behaviour
+        self.aoi_tile.view.observe(self._update_map, "updated")
+
+    def _update_map(self, change):
+
+        # clean the map from the different layers
+        self.map.remove_layername(cm.map.layer.available)
+        self.map.remove_layername(cm.map.layer.mincost)
+        self.map.remove_layername(cm.map.layer.ce)
+        self.map.remove_layername(cm.map.layer.mb)
+
+        # it's impossible to have missing parameters here
+        # as none of the field are clearable
+        # I'll add some tests if I'm wrong
+
+        # download all the maps if needed
+        cs.extract_all(self.model.iso)
+
+        # add the appropriate layers on the map
+
+        return
