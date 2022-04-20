@@ -18,7 +18,7 @@ class ParamTile(sw.Card):
         # create the widgets
         self.w_target = sw.Select(
             small=True,
-            items=[i + 1 for i in range(cp.nb_target)],
+            items=[{"text": f"{i+1}0%", "value": i + 1} for i in range(cp.nb_target)],
             v_model=model.target,
             label="target",
             dense=True,

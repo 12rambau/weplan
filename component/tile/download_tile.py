@@ -21,7 +21,7 @@ class DownloadTile(sw.Card):
         # create the widgets
         self.w_target = sw.Select(
             small=True,
-            items=[i for i in range(1, 5)],
+            items=[{"text": f"{i+1}0%", "value": i + 1} for i in range(cp.nb_target)],
             v_model=[model.target],
             label="target",
             dense=True,
@@ -31,7 +31,7 @@ class DownloadTile(sw.Card):
         )
         self.w_weight = sw.Select(
             small=True,
-            items=[i for i in range(1, 10)],
+            items=[i + 1 for i in range(cp.nb_weight)],
             v_model=[model.weight],
             label="weight",
             dense=True,
