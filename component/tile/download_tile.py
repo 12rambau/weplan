@@ -14,7 +14,7 @@ class DownloadTile(sw.Card):
         )
 
         # create the widgets
-        w_target = sw.Select(
+        self.w_target = sw.Select(
             small=True,
             items=[i for i in range(1, 5)],
             v_model=[model.target],
@@ -24,7 +24,7 @@ class DownloadTile(sw.Card):
             clearable=True,
             chips=True,
         )
-        w_weight = sw.Select(
+        self.w_weight = sw.Select(
             small=True,
             items=[i for i in range(1, 10)],
             v_model=[model.weight],
@@ -46,9 +46,31 @@ class DownloadTile(sw.Card):
         super().__init__(
             max_width="500px",
             class_="pa-1",
-            children=[self.title, w_target, w_weight, self.actions, self.alert],
+            children=[
+                self.title,
+                self.w_target,
+                self.w_weight,
+                self.actions,
+                self.alert,
+            ],
             viz=False,
         )
 
         # add javascript events
         self.close.on_event("click", lambda *args: self.hide())
+
+    def add_target(self, target):
+        """add a target to the v_model values"""
+
+        tmp = list(set([target, *self.w_target.v_model]))
+        self.w_target.v_model = tmp
+
+        return
+
+    def add_weight(self, weight):
+        """add a weight to the v_model values"""
+
+        tmp = list(set([weight, *self.w_weight.v_model]))
+        self.w_weight.v_model = tmp
+
+        return

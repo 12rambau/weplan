@@ -93,4 +93,8 @@ class MapTile(sw.Tile):
         self.aoi_tile.hide()
         self.param_tile.show()
 
+        # add the selected wieght to the download list
+        self.download_tile.add_weight(self.model.weight)
+        self.download_tile.add_target(self.model.target)
+
         return
