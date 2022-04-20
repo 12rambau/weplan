@@ -65,10 +65,14 @@ class Map(sm.SepalMap):
     def remove_layername(self, name):
         """remove a layer if existing by its name"""
 
+        # remove the layer from the map
         try:
             layer = next(l for l in self.layers if l.name == name)
             self.remove_layer(layer)
         except StopIteration:
             pass
+
+        # remove the local_layer from the list
+        self.loaded_rasters.pop(name, None)
 
         return

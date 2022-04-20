@@ -1,4 +1,5 @@
 from sepal_ui import sepalwidgets as sw
+from sepal_ui.scripts import utils as su
 
 from component import widget as cw
 from component import scripts as cs
@@ -39,7 +40,10 @@ class MapTile(sw.Tile):
 
         # add javascript behaviour
         self.aoi_tile.view.observe(self._update_map, "updated")
+        self.param_tile.w_target.observe(self._update_map, "v_model")
+        self.param_tile.w_weight.observe(self._update_map, "v_model")
 
+    @su.switch("disabled", on_widgets=["aoi_tile", "param_tile"])
     def _update_map(self, change):
 
         # clean the map from the different layers
@@ -84,5 +88,9 @@ class MapTile(sw.Tile):
             fit_bounds=False,
             colorbar_position=False,
         )
+
+        # hide the aoi_tile and show the params
+        self.aoi_tile.hide()
+        self.param_tile.show()
 
         return

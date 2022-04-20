@@ -1,4 +1,5 @@
 from sepal_ui import sepalwidgets as sw
+
 from .aoi_view import AoiView
 
 
@@ -25,7 +26,8 @@ class AoiTile(sw.Card):
             max_width="410px",
             class_="pa-1",
             children=[self.title, self.view],
-            viz=False,
+            viz=True,
+            disabled=False,
         )
 
         # add javascript events

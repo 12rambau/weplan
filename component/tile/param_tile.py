@@ -16,14 +16,14 @@ class ParamTile(sw.Card):
         )
 
         # create the widgets
-        w_target = sw.Select(
+        self.w_target = sw.Select(
             small=True,
             items=[i + 1 for i in range(cp.nb_target)],
             v_model=model.target,
             label="target",
             dense=True,
         )
-        w_weight = sw.Select(
+        self.w_weight = sw.Select(
             small=True,
             items=[i + 1 for i in range(cp.nb_weight)],
             v_model=model.weight,
@@ -32,14 +32,15 @@ class ParamTile(sw.Card):
         )
 
         # link the widgets to the model
-        self.model.bind(w_target, "target").bind(w_weight, "weight")
+        self.model.bind(self.w_target, "target").bind(self.w_weight, "weight")
 
         # create the object
         super().__init__(
             max_width="500px",
             class_="pa-1",
-            children=[self.title, w_target, w_weight],
+            children=[self.title, self.w_target, self.w_weight],
             viz=False,
+            disabled=False,
         )
 
         # add javascript events
