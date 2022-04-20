@@ -4,7 +4,8 @@
         "drawer_item": {
             "map": "weplan",
             "about": "About"
-        }
+        },
+        "disclaimer": "This application is a prototype, data are provided for Uganda only."
     },
     "map": {
         "control": {
