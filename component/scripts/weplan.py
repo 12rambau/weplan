@@ -14,15 +14,14 @@ def extract_all(iso):
     """
 
     # check if the folder already exist
-    iso_tmp_folder = cp.tmp_dir / iso
+    iso_tmp_folder = cp.tmp_dir / f"{iso}_{cp.version}"
     if iso_tmp_folder.is_dir():
         return
 
     # extract all the content of the zip file in iso_tmp_folder
-    iso_tmp_folder.mkdir()
-    url = f"https://iisau-weplan.s3.eu-west-1.amazonaws.com/weplan_data/{iso}_v002.zip"
+    url = f"https://iisau-weplan.s3.eu-west-1.amazonaws.com/weplan_data/{iso}_{cp.version}.zip"
     with zipfile.ZipFile(BytesIO(requests.get(url).content)) as f:
-        f.extractall(iso_tmp_folder)
+        f.extractall(cp.tmp_dir)
 
     return
 
@@ -37,8 +36,10 @@ def get_available(iso):
     Return:
         (path): the path to the tif image
     """
+    dir_ = cp.tmp_dir / f"{iso}_{cp.version}"
+    filename = f"available_{cp.version}.tif"
 
-    return
+    return dir_ / filename
 
 
 def get_mincost(iso, target):
@@ -53,7 +54,10 @@ def get_mincost(iso, target):
         (path): the path to the tif image
     """
 
-    return
+    dir_ = cp.tmp_dir / f"{iso}_{cp.version}"
+    filename = f"scen_mincost_target_{target}_{cp.version}.tif"
+
+    return dir_ / filename
 
 
 def get_ce(iso, target, weight):
@@ -69,7 +73,10 @@ def get_ce(iso, target, weight):
         (path): the path to the tif image
     """
 
-    return
+    dir_ = cp.tmp_dir / f"{iso}_{cp.version}"
+    filename = f"scen_tradeoffs_ce_target_{target}_weight_{weight}_{cp.version}.tif"
+
+    return dir_ / filename
 
 
 def get_mb(iso, target, weight):
@@ -85,4 +92,7 @@ def get_mb(iso, target, weight):
         (path): the path to the tif image
     """
 
-    return
+    dir_ = cp.tmp_dir / f"{iso}_{cp.version}"
+    filename = f"scen_tradeoffs_mb_target_{target}_weight_{weight}_{cp.version}.tif"
+
+    return dir_ / filename

@@ -2,6 +2,7 @@ from sepal_ui import sepalwidgets as sw
 
 from component import widget as cw
 from component import scripts as cs
+from component import parameter as cp
 from component.message import cm
 from component.model import WeplanModel
 from .aoi_tile import AoiTile
@@ -55,5 +56,33 @@ class MapTile(sw.Tile):
         cs.extract_all(self.model.iso)
 
         # add the appropriate layers on the map
+        self.map.add_raster(
+            image=cs.get_available(self.model.iso),
+            layer_name=cm.map.layer.available,
+            colormap=cp.cmp_available,
+            fit_bounds=False,
+            colorbar_position=False,
+        )
+        self.map.add_raster(
+            image=cs.get_mincost(self.model.iso, self.model.target),
+            layer_name=cm.map.layer.mincost,
+            colormap=cp.cmp_mincost,
+            fit_bounds=False,
+            colorbar_position=False,
+        )
+        self.map.add_raster(
+            image=cs.get_ce(self.model.iso, self.model.target, self.model.weight),
+            layer_name=cm.map.layer.ce,
+            colormap=cp.cmp_ce,
+            fit_bounds=False,
+            colorbar_position=False,
+        )
+        self.map.add_raster(
+            image=cs.get_mb(self.model.iso, self.model.target, self.model.weight),
+            layer_name=cm.map.layer.mb,
+            colormap=cp.cmp_mb,
+            fit_bounds=False,
+            colorbar_position=False,
+        )
 
         return

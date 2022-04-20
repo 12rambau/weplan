@@ -29,7 +29,7 @@ class AoiView(AoiView):
         self.w_method.viz = False
         self.w_method.v_model = "ADMIN0"
 
-    @su.loading_button(debug=False)
+    @su.loading_button(debug=True)
     def _update_aoi(self, widget, event, data):
         """
         extention of the original method that display information on the map.
