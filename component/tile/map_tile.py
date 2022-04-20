@@ -39,9 +39,21 @@ class MapTile(sw.Tile):
         super().__init__(id_="map_tile", title="", inputs=[self.map])
 
         # add javascript behaviour
-        self.aoi_tile.view.observe(self._update_map, "updated")
+        self.aoi_tile.view.observe(self._update_aoi, "updated")
         self.param_tile.w_target.observe(self._update_map, "v_model")
         self.param_tile.w_weight.observe(self._update_map, "v_model")
+
+    def _update_aoi(self, change):
+
+        # reset weight values everywhere
+        self.param_tile.reset()
+        self.download_tile.reset()
+
+        # hide the aoi_tile and show the params
+        self.aoi_tile.hide()
+        self.param_tile.show()
+
+        return
 
     @su.switch("disabled", on_widgets=["aoi_tile", "param_tile"])
     def _update_map(self, change):
@@ -52,9 +64,9 @@ class MapTile(sw.Tile):
         self.map.remove_layername(cm.map.layer.ce)
         self.map.remove_layername(cm.map.layer.mb)
 
-        # it's impossible to have missing parameters here
-        # as none of the field are clearable
-        # I'll add some tests if I'm wrong
+        # exit if both target and weight are not all set
+        if any([self.model.target is None, self.model.weight is None]):
+            return
 
         # download all the maps if needed
         cs.extract_all(self.model.iso)
@@ -88,10 +100,6 @@ class MapTile(sw.Tile):
             fit_bounds=False,
             colorbar_position=False,
         )
-
-        # hide the aoi_tile and show the params
-        self.aoi_tile.hide()
-        self.param_tile.show()
 
         # add the selected wieght to the download list
         self.download_tile.add_weight(self.model.weight)

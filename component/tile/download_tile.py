@@ -109,3 +109,12 @@ class DownloadTile(sw.Card):
                 copy(from_dir / cp.f_mb.format(target, weight, cp.version), to_dir)
 
         return
+
+    def reset(self):
+
+        self.w_target.v_model = []
+        self.w_weight.v_model = []
+
+        self.hide()
+
+        return

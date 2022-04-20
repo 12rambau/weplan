@@ -45,3 +45,12 @@ class ParamTile(sw.Card):
 
         # add javascript events
         self.close.on_event("click", lambda *args: self.hide())
+
+    def reset(self):
+
+        self.w_target.v_model = None
+        self.w_weight.v_model = None
+
+        self.hide()
+
+        return
