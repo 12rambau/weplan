@@ -20,3 +20,15 @@ cmp_ce = mpl.cm.Blues
 
 cmp_mb = mpl.cm.Oranges
 "the colormap for the max benefits datasets"
+
+f_available = "available_{}.tif"
+"name of the available file in the AWS bucket"
+
+f_mincost = "scen_mincost_target_{}_{}.tif"
+"name of the micost files in the AWS bucket"
+
+f_ce = "scen_tradeoffs_ce_target_{}_weight_{}_{}.tif"
+"name of the ce files in the AWS bucket"
+
+f_mb = "scen_tradeoffs_mb_target_{}_weight_{}_{}.tif"
+"name of the mb files in the AWS bucket"

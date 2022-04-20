@@ -37,9 +37,8 @@ def get_available(iso):
         (path): the path to the tif image
     """
     dir_ = cp.tmp_dir / f"{iso}_{cp.version}"
-    filename = f"available_{cp.version}.tif"
 
-    return dir_ / filename
+    return dir_ / cp.f_available.format(cp.version)
 
 
 def get_mincost(iso, target):
@@ -55,9 +54,8 @@ def get_mincost(iso, target):
     """
 
     dir_ = cp.tmp_dir / f"{iso}_{cp.version}"
-    filename = f"scen_mincost_target_{target}_{cp.version}.tif"
 
-    return dir_ / filename
+    return dir_ / cp.f_mincost.format(target, cp.version)
 
 
 def get_ce(iso, target, weight):
@@ -74,9 +72,8 @@ def get_ce(iso, target, weight):
     """
 
     dir_ = cp.tmp_dir / f"{iso}_{cp.version}"
-    filename = f"scen_tradeoffs_ce_target_{target}_weight_{weight}_{cp.version}.tif"
 
-    return dir_ / filename
+    return dir_ / cp.f_ce.format(target, weight, cp.version)
 
 
 def get_mb(iso, target, weight):
@@ -93,6 +90,5 @@ def get_mb(iso, target, weight):
     """
 
     dir_ = cp.tmp_dir / f"{iso}_{cp.version}"
-    filename = f"scen_tradeoffs_mb_target_{target}_weight_{weight}_{cp.version}.tif"
 
-    return dir_ / filename
+    return dir_ / cp.f_mb.format(target, weight, cp.version)

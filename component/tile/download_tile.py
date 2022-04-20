@@ -1,4 +1,9 @@
+from shutil import copy
+
 from sepal_ui import sepalwidgets as sw
+from sepal_ui.scripts import utils as su
+
+from component import parameter as cp
 
 
 class DownloadTile(sw.Card):
@@ -58,6 +63,7 @@ class DownloadTile(sw.Card):
 
         # add javascript events
         self.close.on_event("click", lambda *args: self.hide())
+        self.btn.on_event("click", self.retreive)
 
     def add_target(self, target):
         """add a target to the v_model values"""
@@ -72,5 +78,34 @@ class DownloadTile(sw.Card):
 
         tmp = list(set([weight, *self.w_weight.v_model]))
         self.w_weight.v_model = tmp
+
+        return
+
+    @su.loading_button(debug=True)
+    def retreive(self, widget, event, data):
+        """retreive the files from the tmp directory to SEPAL folders"""
+
+        # check that the folder exist
+        to_dir = cp.module_dir / self.model.iso
+        to_dir.mkdir(exist_ok=True)
+
+        # fill it with the selected files
+        from_dir = cp.tmp_dir / f"{self.model.iso}_{cp.version}"
+
+        # available
+        copy(from_dir / cp.f_available.format(cp.version), to_dir)
+
+        for target in self.w_target.v_model:
+
+            # mincost
+            copy(from_dir / cp.f_mincost.format(target, cp.version), to_dir)
+
+            for weight in self.w_weight.v_model:
+
+                # ce
+                copy(from_dir / cp.f_ce.format(target, weight, cp.version), to_dir)
+
+                # mb
+                copy(from_dir / cp.f_mb.format(target, weight, cp.version), to_dir)
 
         return
