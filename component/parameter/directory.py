@@ -6,4 +6,8 @@ from pathlib import Path
 module_dir = Path.home() / "module_results"
 module_dir.mkdir(exist_ok=True)
 
-# add all the directory that will be used in the app.
+weplan_dir = module_dir / "weplan"
+weplan_dir.mkdir(exist_ok=True)
+
+tmp_dir = Path.home() / "tmp" / "weplan"
+tmp_dir.mkdir(exist_ok=True)

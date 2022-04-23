@@ -1,11 +1,23 @@
 {
-    "not_translated": "this message only exist in the en dict",
     "app": {
         "title": "weplan",
-        "footer": "The sky is the limit \u00a9 {}",
         "drawer_item": {
-            "aoi": "AOI selection",
+            "map": "weplan",
             "about": "About"
+        },
+        "disclaimer": "This application is a prototype, data are provided for Uganda only."
+    },
+    "map": {
+        "control": {
+            "aoi": "select the AOI",
+            "parameters": "Select the weplan parameters",
+            "download": "Download data"
+        },
+        "layer": {
+            "available": "available for restoration",
+            "mincost": "minimum cost scenario",
+            "ce": "cost-effectivness scenario",
+            "mb": "max benefits scenario"
         }
     }
 }
