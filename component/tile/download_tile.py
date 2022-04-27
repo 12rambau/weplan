@@ -1,4 +1,5 @@
 from shutil import copy
+import time
 
 from sepal_ui import sepalwidgets as sw
 from sepal_ui.scripts import utils as su
@@ -107,6 +108,10 @@ class DownloadTile(sw.Card):
 
                 # mb
                 copy(from_dir / cp.f_mb.format(target, weight, cp.version), to_dir)
+
+        # wait at least 3 seconds so that the user can see the actual
+        # spinning wheel
+        time.sleep(3)
 
         return
 
