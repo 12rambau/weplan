@@ -24,4 +24,4 @@ ipywidgets==7.7.0
 matplotlib==3.1.2
 requests==2.22.0
 traitlets==5.1.1
-git+https://github.com/12rambau/xarray_leaflet.git#egg=xarray_leaflet
+git+https://github.com/12rambau/xarray_leaflet.git@single_band_mask#egg=xarray_leaflet
