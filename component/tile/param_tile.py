@@ -1,4 +1,5 @@
 from sepal_ui import sepalwidgets as sw
+from ipywidgets import dlink
 
 from component import parameter as cp
 
@@ -45,6 +46,7 @@ class ParamTile(sw.Card):
 
         # add javascript events
         self.close.on_event("click", lambda *args: self.hide())
+        dlink((self, "disabled"), (self, "loading"))
 
     def reset(self):
 
