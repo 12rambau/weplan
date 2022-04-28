@@ -21,6 +21,8 @@ class Map(sm.SepalMap):
 
         super().__init__(dc=True, zoom=3)
 
+        self.layout.height = "85vh"
+
         # hide the dc component
         # it's only useful to be compatible with AOI selection
         self.hide_dc()
