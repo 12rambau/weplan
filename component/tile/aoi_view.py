@@ -16,7 +16,7 @@ class AoiView(AoiView):
     def __init__(self, **kwargs):
 
         # create the map
-        super().__init__(methods=["ADMIN0"], **kwargs)
+        super().__init__(methods=["ADMIN0"], gee=False, **kwargs)
 
         # nest the tile
         self.elevation = False
@@ -33,7 +33,8 @@ class AoiView(AoiView):
     def _update_aoi(self, widget, event, data):
         """
         extention of the original method that display information on the map.
-        In the ee display we changed the display parameters. We also check if the aoi is the prototyped Uganda
+        In the display we changed the display parameters. We also check if the aoi is the prototyped Uganda.
+        Only overwrite the geojson version as ee is not involved in this module
         """
 
         # update the model
@@ -61,7 +62,16 @@ class AoiView(AoiView):
 
                 self.map_.addLayer(outline, {"palette": sc.primary}, "aoi")
             else:
-                self.map_.add_layer(self.model.get_ipygeojson())
+                style = {
+                    "stroke": True,
+                    "color": sc.primary,
+                    "weight": 2,
+                    "opacity": 1,
+                    "fill": False,
+                }
+                geojson = self.model.get_ipygeojson()
+                geojson.style = style
+                self.map_.add_layer(geojson)
 
             self.map_.hide_dc()
 
