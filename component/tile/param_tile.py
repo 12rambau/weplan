@@ -37,7 +37,8 @@ class ParamTile(sw.Card):
 
         # create the object
         super().__init__(
-            max_width="500px",
+            max_width="410px",
+            min_width="410px",
             class_="pa-1",
             children=[self.title, self.w_target, self.w_weight],
             viz=False,
