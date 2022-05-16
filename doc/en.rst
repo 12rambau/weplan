@@ -37,3 +37,4 @@ The application will retreive 4 types of analysis from the weplan forest project
 -   :code:`scen_tradeoffs_mb_target_<X>_weight_<Y>_<version>.tif`: max-benefit scenarios. These raster are the optimal solutions that maximise benefit, ignoring costs where :code:`X` is an integer referring to the target category and :code:`Y` is an integer referring to the order of relative weights between carbon and biodiversity objectives.
 
 For more information about the computation methodology and the scenarios, please refer to the `WePlan-Forests website <http://www.weplan-forests.org/flrp/choose.php>`__.
+
