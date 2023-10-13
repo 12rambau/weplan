@@ -14,7 +14,6 @@ class AoiView(AoiView):
     """
 
     def __init__(self, **kwargs):
-
         # create the map
         super().__init__(methods=["ADMIN0"], gee=False, **kwargs)
 
@@ -53,8 +52,7 @@ class AoiView(AoiView):
             [self.map_.remove_layer(lr) for lr in self.map_.layers if lr.name == "aoi"]
             self.map_.zoom_bounds(self.model.total_bounds())
 
-            if self.ee:
-
+            if self.gee:
                 empty = ee.Image().byte()
                 outline = empty.paint(
                     featureCollection=self.model.feature_collection, color=1, width=2

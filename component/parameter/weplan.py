@@ -9,16 +9,16 @@ nb_weight = 10
 version = "v002"
 "name of the weplan output version use in the file naming"
 
-cmp_available = mpl.cm.Greens
+cmp_available = "Greens"
 "the colormap for the available datasets"
 
-cmp_mincost = mpl.cm.Purples
+cmp_mincost = "Purples"
 "the colormap for the mincost datasets"
 
-cmp_ce = mpl.cm.Blues
+cmp_ce = "Blues"
 "the colormap for the cost-effectiveness datasets"
 
-cmp_mb = mpl.cm.Oranges
+cmp_mb = "Oranges"
 "the colormap for the max benefits datasets"
 
 f_available = "available_{}.tif"
