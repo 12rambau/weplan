@@ -18,7 +18,6 @@ class CButton(Button):
 
 class Map(sm.SepalMap):
     def __init__(self):
-
         super().__init__(dc=True, zoom=3)
 
         self.layout.height = "85vh"
@@ -26,9 +25,6 @@ class Map(sm.SepalMap):
         # hide the dc component
         # it's only useful to be compatible with AOI selection
         self.hide_dc()
-
-        # add a fulscreen button
-        self.add_control(sm.FullScreenControl())
 
         # add the buttons on the topleft side of the map
         self.aoi_btn = CButton(cm.map.control.aoi, "map-marker")
@@ -54,27 +50,10 @@ class Map(sm.SepalMap):
         )
 
         if first == True:
-
             self.controls = tuple(
                 [new_control] + [control for control in self.controls]
             )
         else:
-
             self.controls = self.controls + tuple([new_control])
-
-        return
-
-    def remove_layername(self, name):
-        """remove a layer if existing by its name"""
-
-        # remove the layer from the map
-        try:
-            layer = next(l for l in self.layers if l.name == name)
-            self.remove_layer(layer)
-        except StopIteration:
-            pass
-
-        # remove the local_layer from the list
-        self.loaded_rasters.pop(name, None)
 
         return

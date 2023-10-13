@@ -13,7 +13,6 @@ from .download_tile import DownloadTile
 
 class MapTile(sw.Tile):
     def __init__(self):
-
         # set the map in the center
         self.map = cw.Map()
 
@@ -44,7 +43,6 @@ class MapTile(sw.Tile):
         self.param_tile.w_weight.observe(self._update_map, "v_model")
 
     def _update_aoi(self, change):
-
         # reset weight values everywhere
         self.param_tile.reset()
         self.download_tile.reset()
@@ -57,12 +55,14 @@ class MapTile(sw.Tile):
 
     @su.switch("disabled", on_widgets=["aoi_tile", "param_tile"])
     def _update_map(self, change):
+        if not self.model.iso:
+            raise Exception(cm.map.error.no_iso)
 
         # clean the map from the different layers
-        self.map.remove_layername(cm.map.layer.available)
-        self.map.remove_layername(cm.map.layer.mincost)
-        self.map.remove_layername(cm.map.layer.ce)
-        self.map.remove_layername(cm.map.layer.mb)
+        self.map.remove_layer(cm.map.layer.available, none_ok=True)
+        self.map.remove_layer(cm.map.layer.mincost, none_ok=True)
+        self.map.remove_layer(cm.map.layer.ce, none_ok=True)
+        self.map.remove_layer(cm.map.layer.mb, none_ok=True)
 
         # exit if both target and weight are not all set
         if any([self.model.target is None, self.model.weight is None]):
@@ -77,28 +77,24 @@ class MapTile(sw.Tile):
             layer_name=cm.map.layer.available,
             colormap=cp.cmp_available,
             fit_bounds=False,
-            colorbar_position=False,
         )
         self.map.add_raster(
             image=cs.get_mincost(self.model.iso, self.model.target),
             layer_name=cm.map.layer.mincost,
             colormap=cp.cmp_mincost,
             fit_bounds=False,
-            colorbar_position=False,
         )
         self.map.add_raster(
             image=cs.get_ce(self.model.iso, self.model.target, self.model.weight),
             layer_name=cm.map.layer.ce,
             colormap=cp.cmp_ce,
             fit_bounds=False,
-            colorbar_position=False,
         )
         self.map.add_raster(
             image=cs.get_mb(self.model.iso, self.model.target, self.model.weight),
             layer_name=cm.map.layer.mb,
             colormap=cp.cmp_mb,
             fit_bounds=False,
-            colorbar_position=False,
         )
 
         # add the selected wieght to the download list
