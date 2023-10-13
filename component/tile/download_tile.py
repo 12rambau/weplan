@@ -5,11 +5,11 @@ from sepal_ui import sepalwidgets as sw
 from sepal_ui.scripts import utils as su
 
 from component import parameter as cp
+from component.message import cm
 
 
 class DownloadTile(sw.Card):
     def __init__(self, model):
-
         # read the model
         self.model = model
 
@@ -42,7 +42,7 @@ class DownloadTile(sw.Card):
         )
 
         # compulsory component to display a process
-        self.btn = sw.Btn("Retreive to SEPAL", color="secondary")
+        self.btn = sw.Btn(cm.map.button.retrieve, color="secondary")
         self.actions = sw.CardActions(
             class_="pa-0 ma-0", children=[sw.Spacer(), self.btn]
         )
@@ -50,7 +50,6 @@ class DownloadTile(sw.Card):
 
         # create the object
         super().__init__(
-            max_width="410px",
             min_width="410px",
             class_="pa-1",
             children=[
@@ -98,12 +97,10 @@ class DownloadTile(sw.Card):
         copy(from_dir / cp.f_available.format(cp.version), to_dir)
 
         for target in self.w_target.v_model:
-
             # mincost
             copy(from_dir / cp.f_mincost.format(target, cp.version), to_dir)
 
             for weight in self.w_weight.v_model:
-
                 # ce
                 copy(from_dir / cp.f_ce.format(target, weight, cp.version), to_dir)
 
@@ -114,10 +111,11 @@ class DownloadTile(sw.Card):
         # spinning wheel
         time.sleep(3)
 
+        self.alert.add_msg(cm.map.alert.download.format(to_dir), "success")
+
         return
 
     def reset(self):
-
         self.w_target.v_model = []
         self.w_weight.v_model = []
 
