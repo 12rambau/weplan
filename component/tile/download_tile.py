@@ -82,7 +82,7 @@ class DownloadTile(sw.Card):
 
         return
 
-    @su.loading_button(debug=True)
+    @su.loading_button()
     def retreive(self, widget, event, data):
         """retreive the files from the tmp directory to SEPAL folders"""
 
