@@ -18,6 +18,15 @@
             "mincost": "minimum cost scenario",
             "ce": "cost-effectivness scenario",
             "mb": "max benefits scenario"
+        },
+        "error": {
+            "no_iso": "Please select an AOI"
+        },
+        "button" : {
+            "retrieve" : "Retrieve to SEPAL"
+        },
+        "alert" : {
+            "download" : "Data successfully saved in: {}."
         }
     }
 }
