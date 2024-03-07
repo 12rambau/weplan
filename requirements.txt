@@ -3,7 +3,8 @@ voila
 earthengine-api
 pre-commit
 
-sepal_ui==2.17
+# Fixes authentication process
+git+https://github.com/12rambau/sepal_ui.git@sepal_pre_release
 
 matplotlib
 requests
