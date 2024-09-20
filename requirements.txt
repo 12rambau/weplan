@@ -3,8 +3,8 @@ voila
 earthengine-api
 pre-commit
 
-# Fixes authentication process
-git+https://github.com/12rambau/sepal_ui.git@sepal_pre_release
+sepal_ui==2.20.0
+rasterio<1.3.11 # Leave it here even if it's already in the sepal_ui requirements. Check https://github.com/openforis/sepal/issues/328
 
 matplotlib
 requests
@@ -13,5 +13,3 @@ dask[complete]
 
 # Don't remove, this is needed for the xarray_leaflet, otherwise we'll end with <7.8.0
 ipywidgets>=8.1.1
-
-# Rebuild
